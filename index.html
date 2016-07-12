@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="avengersApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Avengers App</title>
+  </head>
+  <body ng-controller="MainController">
+
+    <input type="text" name="search" value="Filter results" ng-model="filterText">
+    <button ng-click="getHeroes()">Get Heroes</button>
+    <div class="hero-wrapper" >
+      <div class="heroCard" ng-repeat="hero in avengers | filter: {name: filterText}">
+        <h2 class="heroName">{{hero.name}}</h2>
+        <hr>
+        <div class="hero-image">
+          <img ng-src={{hero.thumbnail.path}}.{{hero.thumbnail.extension}} alt="hero thumbnail"/>
+        </div>
+        <h4 class="description">{{hero.description || "This hero is too cool to describe."}}</h4>
+        <p class="modified-stamp"> Last modified {{hero.modified | date}}</p>
+
+      </div>
+    </div>
+
+
+  <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+  <script type='text/javascript' src="./scripts/app.js"></script>
+  <script type='text/javascript' src="./scripts/MainCtrl.js"></script>
+  <script type='text/javascript' src="./scripts/dataServices.js"></script>
+  </body>
+</html>
